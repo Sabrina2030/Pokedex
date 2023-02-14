@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 
@@ -32,6 +31,7 @@ function App() {
           <img src={pokemon.sprites?.front_default} alt="pokemon" />
         </div>
         <div>
+            <button onClick={() => getPokemon(currentId - 1)}>Previous</button>
             <button onClick={() => getPokemon(currentId + 1)}>Next</button>
         </div>
         <div>
@@ -41,12 +41,14 @@ function App() {
         </div>
         <div>
           Abilities: 
-          {pokemon.abilities.map((ability) => {
-            return (
-              <div key={ability.ability.name}>
-                {ability.ability.name}
-              </div>
-            );
+          {pokemon.abilities.map( item => {
+            return <div>{item.ability.name}</div>
+          })}
+        </div>
+        <div>
+          Weaknesses:
+          {pokemon.types.map( item => {
+            return <div>{item.type.name}</div>
           })}
         </div>
       </header>
