@@ -33,7 +33,7 @@ export default function MediaCard({ image, logo, pokemon,  weaknesses, stats, ty
   };
 
   return (
-    <Card sx={{ maxWidth: 345, backgroundColor:'rgb(164,164,164)', border: '3px solid RGB(221 50 212)' }}>
+    <Card sx={{ maxWidth: 345, backgroundColor:'rgb(164,164,164)', border: '5px solid rgb(215,128,146)' }}>
       <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: 'white',  boxShadow: 5, padding: '1px', margin: '2px', fontSize: '5px' }} aria-label="recipe" src={logo}>
@@ -42,7 +42,7 @@ export default function MediaCard({ image, logo, pokemon,  weaknesses, stats, ty
           titleTypographyProps={{variant:'h4', alig: 'left' }}
           title={pokemon.name}
       />
-      <div style={ {display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'} }>
+      <div style={ {display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', fontSize: '15px'} }>
         {pokemon.types?.map((type) => (
           <label className= {type.type.name} >{type.type.name} </label>
         ))}
