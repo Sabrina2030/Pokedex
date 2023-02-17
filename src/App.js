@@ -4,7 +4,7 @@ import useCard from './Hooks/custom-hook';
 
 function App() {
 
-  const [pokemon, weaknesses, currentId, getPokemon, moves, stats, types] = useCard();
+  const [pokemon, weaknesses, currentId, getPokemon, stats, types] = useCard();
 
   return (
     <div className="App">
@@ -16,6 +16,7 @@ function App() {
           pokemon={pokemon}
           weaknesses={weaknesses}
           stats={stats}
+          types={types}
         />
         <div>
           <button onClick={() => getPokemon(currentId - 1)}>Previous</button>

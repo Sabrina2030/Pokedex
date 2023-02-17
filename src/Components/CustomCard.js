@@ -1,17 +1,15 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import '../styles/types.css';
 import { Card, Avatar, IconButton, CardHeader,CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
 import { Chart as ChartJS, BarElement, LinearScale, CategoryScale, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(BarElement, LinearScale, CategoryScale, Tooltip, Legend);
 
-export default function MediaCard({ image, logo, pokemon,  weaknesses}) {
-  console.log(pokemon.stats);
-  const baseStats = pokemon.stats?.map((stat) => stat.base_stat);
-  console.log(baseStats);
-  
+export default function MediaCard({ image, logo, pokemon,  weaknesses, stats, types}) {
 
+  const baseStats = pokemon.stats?.map((stat) => stat.base_stat);
+  // console.log(baseStats);
 
   const data = {
     labels: ['HP', 'Attack', 'Defense', 'Special Attack', 'Special Defense', 'Speed'],
@@ -34,26 +32,30 @@ export default function MediaCard({ image, logo, pokemon,  weaknesses}) {
     },
   };
 
-
   return (
-    <Card sx={{ maxWidth: 345, backgroundColor:'rgb(164,164,164)', border: '1px solid yellow' }}>
+    <Card sx={{ maxWidth: 345, backgroundColor:'rgb(164,164,164)', border: '3px solid RGB(221 50 212)' }}>
       <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: 'white',  boxShadow: 5, padding: '5px', margin: '2px', fontSize: '5px' }} aria-label="recipe" src={logo}>
+            <Avatar sx={{ bgcolor: 'white',  boxShadow: 5, padding: '1px', margin: '2px', fontSize: '5px' }} aria-label="recipe" src={logo}>
             </Avatar>
           }
           titleTypographyProps={{variant:'h4', alig: 'left' }}
           title={pokemon.name}
       />
+      <div style={ {display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'} }>
+        {pokemon.types?.map((type) => (
+          <label className= {type.type.name} >{type.type.name} </label>
+        ))}
+      </div>
       <CardMedia
         sx={{ 
-          minHeight: '200px', 
-          maxHeight: '200px', 
+          minHeight: '180px', 
+          maxHeight: '180px', 
           padding: "15px", 
           objectFit: "contain", 
-          backgroundColor:'skyblue', 
+          backgroundColor:'rgb(48,167,215)', 
           width: "auto",
-          border: '1px solid black'
+          border: '2px solid black'
           }}
         image={image}
         title="green iguana"
@@ -63,15 +65,22 @@ export default function MediaCard({ image, logo, pokemon,  weaknesses}) {
           Info
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Weight: {pokemon.weight}
-          High: {pokemon.height}
-          <div>
+          <div style={ { margin: '10px'} }>
+            <label>Height: </label>
+            <label>{pokemon.height} </label>
+            <label>Weight: </label>
+            <label>{pokemon.weight} </label>
+          </div>
+      
+          <div style={ { margin: '10px'} }>
             <label>Abilities: </label>
             {pokemon.abilities?.map((ability) => (
               <label>{ability.ability.name} </label>
             ))}
           </div>
-          <Bar data={data} options={options} />
+          <div>
+               <Bar data={data} options={options} />
+          </div>
           {/* <div>
             <label>Weaknesses: </label>
             {weaknesses?.map((weakness) => (

@@ -5,7 +5,6 @@ function useCard() {
     const [pokemon, setPokemon] = useState({});
     const [currentId , setCurrentId] = useState(1);
     const [weaknesses, setWeaknesses] = useState([]);
-    const [moves, setMoves] = useState([]);
     const [stats, setStats] = useState([]);
     const [types, setTypes] = useState([]);
 
@@ -17,10 +16,8 @@ function useCard() {
     fetch(Url + currentId)
         .then((response) => response.json())
         .then((data) => {
-        // console.log(data);
         setCurrentId(data.id);
         setPokemon(data);
-        setMoves(data.moves);
         setStats(data.stats);
         setTypes(data.types);
 
@@ -39,7 +36,7 @@ function useCard() {
 
     }, [currentId]);
 
-    return [pokemon, weaknesses, currentId, getPokemon, moves, stats, types];
+    return [pokemon, weaknesses, currentId, getPokemon, stats, types];
 }
 
 export default useCard;
